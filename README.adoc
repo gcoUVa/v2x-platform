@@ -1,0 +1,51 @@
+= GCO BSP
+
+To get the BSP you need to have `repo` installed and use it as:
+
+Install the `repo` utility:
+
+[source,console]
+$: mkdir ~/bin
+$: curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+$: chmod a+x ~/bin/repo
+
+Download the BSP source:
+
+[source,console]
+$: PATH=${PATH}:~/bin
+$: mkdir gco-bsp
+$: cd gco-bsp
+$: repo init -u https://github.com/gcoUVa/v2x-platform.git -b sumo
+$: repo sync
+
+At the end of the commands you have every metadata you need to start work with.
+
+To start a simple image build:
+
+[source,console]
+$: MACHINE=solidrun-imx6 DISTRO=poky source setup-environment build
+$: bitbake core-image-v2x-dev
+
+You can use any directory to host your build.
+
+The source code is checked out at `sources`.
+
+== Contributing
+
+To contribute to this layer you should send the patches for review to:
+
+Email::
+    javier.fernandez.pastrana@gmail.com
+
+Source code::
+    https://github.com/gcoUVa/v2x-platform
+
+When creating patches, please use something like:
+
+[source,console]
+$: git format-patch -s --subject-prefix='gco-v2x-bsp-platform][PATCH][sumo' origin
+
+When sending patches, please use something like:
+
+[source,console]
+$: git send-email --to javier.fernandez.pastrana@gmail.com <generated patch>
